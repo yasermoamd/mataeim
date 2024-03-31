@@ -1,0 +1,45 @@
+<div class="container mx-auto">
+    <div class="toggle flex justify-center space-x-1">
+        <button id="signup-btn" class="w-[180px] bg-gray-200  text-black font-bold py-2 focus:outline-none focus:shadow-outline">Sign Up</button>
+        <button id="signin-btn" class="w-[180px] bg-gray-200  text-black font-bold py-2 focus:outline-none focus:shadow-outline">Sign In</button>
+    </div>
+    <div class="forms mt-4">
+        <form id="signin-form" class="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 hidden">
+            <h2 class="text-xl mb-4">Sign In</h2>
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+            <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <input type="password" id="password" name="password" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <button type="submit" class="w-[300px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</button>
+        </form>
+
+        <form id="signup-form" class="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-xl mb-4">Create New Account</h2>
+            <label for="fullname" class="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+            <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <input type="password" id="password" name="password" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Account</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const signupBtn = document.getElementById('signup-btn');
+    const signinBtn = document.getElementById('signin-btn');
+    const signupForm = document.getElementById('signup-form');
+    const signinForm = document.getElementById('signin-form');
+
+    signinBtn.addEventListener('click', () => {
+        signinForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+    });
+
+    signupBtn.addEventListener('click', () => {
+    signupForm.classList.remove('hidden');
+    signinForm.classList.add('hidden');
+    });
+
+</script>
