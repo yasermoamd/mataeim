@@ -1,0 +1,67 @@
+<script src="https://cdn.tailwindcss.com"></script>
+
+<header class="container flex justify-between px-4 py-2 font-serif relative items-center">
+    <h4 class="ml-12 text-xl underline underline-offset-4 decoration-2">Tasteway</h4>
+    <!-- Mobile Navbar Toggle Button -->
+    <button id="menu-toggle" class="block lg:hidden text-gray-500 focus:outline-none">
+        <svg id="menu-icon" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    <!-- Navbar Menu -->
+    <nav id="menu" class="hidden lg:flex items-center gap-8 list-none"> <!-- Displaying the menu only for large screens with flex layout -->
+        <ul class="flex gap-8">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">RECIPES</a></li>
+            <li><a href="#">NEW RECIPES</a></li>
+            <li><a href="#">SHOP</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navbar Menu -->
+    <nav id="menu-mobile" class="hidden lg:hidden absolute top-16 right-0 bg-white w-[20rem] max-w-sm h-auto shadow-md z-10 overflow-y-auto transition-transform duration-300 ease-in-out">
+        <ul class="flex flex-col justify-center items-center gap-3 py-6 px-4">
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">HOME</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">ABOUT</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">NEW RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">SHOP</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuMobile = document.getElementById('menu-mobile');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    menuToggle.addEventListener('click', () => {
+        menuMobile.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+    });
+    const logo = document.querySelector('h4');
+    const letters = logo.textContent.split(''); // Split text into an array of letters
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    for (let i = 0; i < letters.length; i++) {
+      letters[i] = `<span style="color: ${getRandomColor()};">${letters[i]}</span>`;
+    }
+
+    logo.innerHTML = letters.join('');
+
+</script>
