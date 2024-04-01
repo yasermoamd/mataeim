@@ -1,7 +1,12 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <header class="container pl-2 flex justify-between py-2 font-serif relative items-center">
-    <h4 class="ml-12 text-xl underline underline-offset-4 decoration-2">Tasteway</h4>
+    <a href="/">
+        <h4 class="ml-12 text-xl underline underline-offset-4 decoration-2">
+         Tasteway
+        </h4>
+    </a>
+
     <!-- Mobile Navbar Toggle Button -->
     <button id="menu-toggle" class="block lg:hidden text-gray-500 focus:outline-none">
         <svg id="menu-icon" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -15,13 +20,13 @@
     <!-- Navbar Menu -->
     <nav id="menu" class="hidden lg:flex items-center gap-8 list-none"> <!-- Displaying the menu only for large screens with flex layout -->
         <ul class="flex gap-8">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">ABOUT</a></li>
-            <li><a href="#">RECIPES</a></li>
-            <li><a href="#">NEW RECIPES</a></li>
-            <li><a href="#">SHOP</a></li>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/recipes">RECIPES</a></li>
+            <li><a href="/add_recipe">NEW RECIPES</a></li>
+            <li><a href="/shop">SHOP</a></li>
             <li>
-                <a href="#">
+                <a href="/auth">
                     <i class="fas fa-user"></i> SIGN IN / SIGN UP
                 </a>
             </li>
@@ -31,13 +36,13 @@
     <!-- Mobile Navbar Menu -->
     <nav id="menu-mobile" class="hidden lg:hidden absolute top-16 right-0 bg-white w-[20rem] max-w-sm h-auto shadow-md z-10 overflow-y-auto transition-transform duration-300 ease-in-out">
         <ul class="flex flex-col justify-center items-center gap-3 py-6 px-4">
-            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">HOME</a></li>
-            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">ABOUT</a></li>
-            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">RECIPES</a></li>
-            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">NEW RECIPES</a></li>
-            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="#">SHOP</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/">HOME</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/about">ABOUT</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/recipes">RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/add_recipe">NEW RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/shop">SHOP</a></li>
             <li>
-                <a href="#">
+                <a href="/auth">
                     <i class="fas fa-user"></i> SIGN IN / SIGN UP
                 </a>
             </li>

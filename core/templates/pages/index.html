@@ -6,8 +6,9 @@
         <title>{{ page_title }}</title>
 </head>
 <main class="container mx-auto px-4">
-      <h1>Home Page</h1>
-  </main>
+{% include 'components/search_components.html' %}
+{% include 'components/recipe_box.html' %}
+</main>
 
 {% endblock %}
 

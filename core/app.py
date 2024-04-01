@@ -1,6 +1,7 @@
 from flask import Flask
 from .extentions import db
 from .router.main import main_bp
+from .router.auth import auth_bp
 
 
 def create_app():
@@ -10,6 +11,7 @@ def create_app():
 
     # register routes blueprints
     app.register_blueprint(main_bp, url_prefix="/")
+    app.register_blueprint(auth_bp, url_prefix="/auth")
     db.init_app(app)
 
     app.debug = True

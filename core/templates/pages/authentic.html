@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layouts/base.html' %}
+
+{% include 'components/header.html' %}
+{% block content %}
+    {% include 'components/form.html' %}
+{% endblock %}
+{% include 'components/footer.html' %}
