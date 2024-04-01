@@ -1,10 +1,18 @@
+"""
+Copyright (c) 2024 - present tasteway
+"""
+
 from flask import Flask
-from .extentions import db
+from .extensions import db
 from .router.main import main_bp
 from .router.auth import auth_bp
 
 
 def create_app():
+    """
+      create_app - function to create app instance and routes register
+      :return: app instance
+    """
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasteway.db"
     app.config["SECRET_KEY"] = "CXGWWwO/VfH14hH2ID2NsSNQR0K6WOmlhuKZ+4tdEHk="
