@@ -1,0 +1,126 @@
+<link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+
+<style>
+    /* Custom CSS for sticky header */
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: white; /* Change as needed */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for styling */
+    }
+    #header {
+        padding-right: 0;
+    }
+</style>
+
+<header>
+    <div id="header" class="container bg-white lg:w-full pl-2 pr-0 flex justify-around py-2 font-serif relative items-center">
+        <a href="/">
+                <h4 class="ml-12 text-xl underline underline-offset-4 decoration-2">
+            Tasteway
+        </h4>
+    </a>
+
+    <div id="search-bar" class="hidden">
+        <!-- Search bar content goes here -->
+      <div class="relative w-full">
+          <label>
+              <input type="text" class="border border-2 block w-[350px] px-8 py-2 rounded-md outline-none  focus:border-blue-500 pl-10" placeholder="Search by keyword">
+          </label>
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+      </div>
+    </div>
+
+    <!-- Mobile Navbar Toggle Button -->
+    <button id="menu-toggle" class="block lg:hidden text-gray-500 focus:outline-none">
+        <svg id="menu-icon" class="h-6 w-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    <!-- Navbar Menu -->
+    <nav id="menu" class="hidden lg:flex items-center gap-4 list-none"> <!-- Displaying the menu only for large screens with flex layout -->
+        <ul class="flex gap-4">
+            <li>
+                <a href="/auth">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/auth">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/auth">
+                    <i class="fas fa-heart"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navbar Menu -->
+    <nav id="menu-mobile" class="hidden lg:hidden absolute top-16 right-0 bg-white w-full max-w-sm h-auto shadow-md z-10 overflow-y-auto transition-transform duration-300 ease-in-out">
+        <ul class="flex flex-col justify-center items-center gap-3 py-6 px-4">
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/">HOME</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/about">ABOUT</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/recipes">RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/add_recipe">NEW RECIPES</a></li>
+            <li class="hover:bg-gray-300 hover:py-2 w-full text-center"><a href="/shop">SHOP</a></li>
+            <li>
+                <a href="/auth">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+    <div class="flex justify-center items-center">
+        <nav id="menu" class="hidden lg:flex items-center gap-8 list-none">
+            <ul class="flex gap-8">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/recipes">RECIPES</a></li>
+                <li><a href="/add_recipe">NEW RECIPES</a></li>
+                <li><a href="/shop">SHOP</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuMobile = document.getElementById('menu-mobile');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const searchBar = document.getElementById('search-bar');
+    const header = document.getElementById('header');
+
+    menuToggle.addEventListener('click', () => {
+        menuMobile.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+
+        // Check if scroll position is greater than 0 to determine if user has scrolled down
+        if (scrollPosition > 2) {
+            // Show search bar
+            searchBar.classList.remove('hidden');
+            // Make header sticky
+            header.classList.add('sticky');
+        } else {
+            // Hide search bar
+            searchBar.classList.add('hidden');
+            // Remove sticky header
+            header.classList.remove('sticky');
+        }
+    });
+</script>

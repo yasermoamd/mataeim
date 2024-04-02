@@ -14,7 +14,7 @@
        ```
      - Export your flask app to your bash
        ```
-         export FLASK_APP=core/app.py
+         export FLASK_APP=app.py
        ```
      - Run the app
        ``` flask run --debug ``` <strong><p style="color:red">Make sure it's --debug to enable hotreload<p></strong>
