@@ -1,0 +1,27 @@
+# Netlify configuration file for React app
+
+[build]
+  # Directory to change to before starting a build
+  base = "./client"
+
+  # Command to build your site
+  command = "npm run build"
+
+  # Functions directory (optional)
+  functions = "functions"
+
+  # Publish directory (this is where your built site will live)
+  publish = "build"
+
+[[redirects]]
+  # Redirects all traffic to the index.html file
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Cache policy for all files
+  for = "/*"
+    [headers.values]
+      Cache-Control = "public, max-age=0, must-revalidate"
+
