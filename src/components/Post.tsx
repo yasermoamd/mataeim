@@ -25,10 +25,6 @@ export const PostComponent: React.FC<PostProps> = ({ post }) => {
     usePostStore.getState().addLikes(id);
     setIsLiked(!isLiked);
   }
-  const handleUnLikedPost = (id: string) => {
-    usePostStore.getState().addLikes(id);
-    setIsLiked(!isLiked);
-  }
   const handleUpdatePost = (updatedPost: IPost) => {
     updatePost(updatedPost);
     setShowEdit(false);
