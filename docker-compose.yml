@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  flask:
+    build:
+      context: ./backend
+    container_name: my-flask-container
+    ports:
+      - "8000:8000"
