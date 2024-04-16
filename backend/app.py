@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify
 def create_app():
     app = Flask(__name__)
 
+    app.config['SECRET_KEY'] = 'Mka923jdjaj2ja'
+
     @app.route('/api')
     def api(): 
         return jsonify({
