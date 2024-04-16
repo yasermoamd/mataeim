@@ -1,10 +1,6 @@
 import { useEffect } from "react";
-import { usePostStore } from "../store/postStore";
 
 const useFetch = (url: string,) => {
-  const { setPosts } = usePostStore((state) => ({
-    setPosts: state.setPosts,
-  }));
 
   useEffect(() => {
     fetch(url)
