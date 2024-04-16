@@ -1,4 +1,3 @@
-import { AddPostComponent } from "../components/AddPost";
 import HeaderComponent from "../components/HeaderComponent";
 
 
