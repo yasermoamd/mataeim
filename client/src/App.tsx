@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css' 
 import { usePostStore } from './app/store/postStore';
 import { AddPostComponent } from './components/AddPost';
