@@ -1,19 +1,12 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { a } from 'vitest/dist/suite-ynYMzeLu.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom'
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true
-      }
-    }
   }
 })
