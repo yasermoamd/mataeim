@@ -4,12 +4,6 @@
   # Directory to change to before starting a build
   base = "./client"
 
-  # Command to build your site
-  command = "npm run build"
-
-  # Functions directory (optional)
-  functions = "functions"
-
   # Publish directory (this is where your built site will live)
   publish = "build"
 
