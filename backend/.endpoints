@@ -1,11 +1,16 @@
 ## User
-/api/auth => get users
-/api/auth/create => create user
+/api/auth/register => post
+/api/auth/login => post	
+/api/auth/logout => logout
 
-## post
-/api/posts => get posts
-/api/posts/create => create post
+## Post
+/api/posts/ => get
+/api/posts/create => post
 
-## comment
-/api/comments => get comments
-/api/comments/create => create comment
+## Comment
+/api/comments => get
+/api/comments/create => post
+
+## list all endpoints
+
+/list_endpoints => get

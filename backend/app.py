@@ -33,6 +33,18 @@ def create_app():
     # Initialize database
     db.init_app(app)
     migrate = Migrate(app, db)
+    @app.route('/list_endpoints', methods=['GET'])
+    def list_endpoints():
+        routes = []
+        for rule in app.url_map.iter_rules():
+            if rule.endpoint != 'static':
+                routes.append({
+                    'endpoint': rule.endpoint,
+                    'methods': ', '.join(rule.methods),
+                    'path': str(rule)
+                })
+        
+        return jsonify({'routes': routes})
     return app
 
 quotes_app = create_app()
