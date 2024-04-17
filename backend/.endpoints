@@ -1,0 +1,11 @@
+## User
+/api/auth => get users
+/api/auth/create => create user
+
+## post
+/api/posts => get posts
+/api/posts/create => create post
+
+## comment
+/api/comments => get comments
+/api/comments/create => create comment

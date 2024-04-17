@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from util.extensions import db
 from posts.post_model import Post
-from comments.post_model import Comment
+from .comment_model import Comment
 
-comment_routes = Blueprint('posts', __name__)
+comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route('/', methods=['GET'])
 def get_comments():
