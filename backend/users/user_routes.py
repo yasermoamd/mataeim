@@ -33,3 +33,19 @@ def login():
 @user_routes.route('/logout')
 def logout():
     return jsonify({'message': 'Logout'})
+
+# get users
+@user_routes.route('/')
+def get_users():
+    users = User.query.all()
+    user_list = []
+    for user in users:
+        user_dict = {
+            'id': user.id,
+            'fullname': user.fullname,
+            'email': user.email,
+            'created_at': user.created_at,
+            'updated_at': user.updated_at
+        }
+        user_list.append(user_dict)
+    return jsonify(user_list)

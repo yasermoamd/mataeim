@@ -33,6 +33,9 @@ def create_app():
     # Initialize database
     db.init_app(app)
     migrate = Migrate(app, db)
+    # Create database and tables
+    with app.app_context():
+        db.create_all()
     @app.route('/list_endpoints', methods=['GET'])
     def list_endpoints():
         routes = []
@@ -51,3 +54,5 @@ quotes_app = create_app()
 # Run the Flask app if this script is executed directly
 if __name__ == "__main__":
     quotes_app.run()
+
+

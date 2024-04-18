@@ -1,3 +1,7 @@
+#########################################################
+# Pre Installed packages# python3, sqlite3, virtualenv  #
+#########################################################
+
 if [ ! -d "venv" ]; then
     echo --------------------
     echo Creating virtualenv
