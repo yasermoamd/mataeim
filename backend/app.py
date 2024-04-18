@@ -10,6 +10,7 @@ from posts.post_routes import post_routes
 from comments.comment_routes import comment_routes
 from config import DevConfig
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
 """
 Create a Flask app with the following configurations:
 - SECRET_KEY
@@ -19,6 +20,8 @@ Create a Flask app with the following configurations:
 - Register blueprints
 - Initialize database
 """
+
+jwt = JWTManager()
 def create_app():
     # Create Flask app
     app = Flask(__name__)
@@ -36,6 +39,9 @@ def create_app():
     # Create database and tables
     with app.app_context():
         db.create_all()
+    # initialization of the extension is going to be made on the auth module.
+    jwt.init_app(app)
+    # list all endpoints 
     @app.route('/list_endpoints', methods=['GET'])
     def list_endpoints():
         routes = []

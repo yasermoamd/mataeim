@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from util.extensions import db
 from users.user_model import User
-
+from .user_service import authenticate
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 user_routes = Blueprint('auth', __name__)
 
 
@@ -24,9 +25,22 @@ def register():
 
     return jsonify({'message': 'User created'})
 
-@user_routes.route('/login', methods=['GET'])
+@user_routes.route('/login', methods=['POST'])
 def login():
-    return jsonify({'message': 'Login'})
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}),400
+    fullname = request.json.get('fullname', None)
+    password = request.json.get('password', None)
+    if not fullname:
+        return jsonify({"msg": "Missing fullname parameter"}),400
+    if not password:
+        return jsonify({"msg": "Missing password parameter"}),400
+    user = authenticate(fullname, password)
+    if not user:
+        return jsonify({"msg": "Wrong username or password"}), 401
+    # create access token and return it 
+    access_token = create_access_token(identity=user.id)
+    return jsonify(access_token=access_token), 200
 
 
 
@@ -35,8 +49,10 @@ def logout():
     return jsonify({'message': 'Logout'})
 
 # get users
-@user_routes.route('/')
+@user_routes.route('/', methods=["GET"])
+@jwt_required()
 def get_users():
+    # get all User
     users = User.query.all()
     user_list = []
     for user in users:
@@ -48,4 +64,4 @@ def get_users():
             'updated_at': user.updated_at
         }
         user_list.append(user_dict)
-    return jsonify(user_list)
+    return jsonify(user_list), 200
