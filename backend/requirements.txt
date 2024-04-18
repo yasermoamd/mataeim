@@ -11,7 +11,6 @@ python-dotenv==1.0.1
 SQLAlchemy==2.0.29
 typing_extensions==4.11.0
 watchdog==4.0.0
-Werkzeug==3.0.2
 Flask-Migrate
 flask-jwt-extended
-Flask-WTF==0.14.2
+Flask-WTF
