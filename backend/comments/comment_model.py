@@ -25,3 +25,12 @@ class Comment(db.Model):
     def create_comment(self):
         db.session.add(self)
         db.session.commit()
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+        }

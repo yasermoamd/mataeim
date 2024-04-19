@@ -43,3 +43,11 @@ class User(db.Model):
     def update_user(self):
         db.session.delete(self)
         db.session.commit()
+    def serialize(self):
+        return{
+            'id': self.id,
+            'fullname': self.fullname,
+            'email': self.email,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

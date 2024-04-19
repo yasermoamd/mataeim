@@ -3,7 +3,7 @@ This script creates a Flask app and initializes the database.
 """
 
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, current_app
 from util.extensions import db
 from users.user_routes import user_routes
 from posts.post_routes import post_routes
@@ -11,6 +11,7 @@ from comments.comment_routes import comment_routes
 from config import DevConfig
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+
 """
 Create a Flask app with the following configurations:
 - SECRET_KEY
@@ -28,11 +29,6 @@ def create_app():
 
     # add configuration setting
     app.config.from_object(DevConfig)
-
-    # Register blueprints
-    app.register_blueprint(user_routes, url_prefix='/api/auth')
-    app.register_blueprint(post_routes, url_prefix='/api/posts')
-    app.register_blueprint(comment_routes, url_prefix='/api/comments')
     # Initialize database
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -42,6 +38,12 @@ def create_app():
     # initialization of the extension is going to be made on the auth module.
     jwt.init_app(app)
     # list all endpoints 
+
+    # Register blueprints
+    app.register_blueprint(user_routes, url_prefix='/api/auth')
+    app.register_blueprint(post_routes, url_prefix='/api/posts')
+    app.register_blueprint(comment_routes, url_prefix='/api/comments')
+
     @app.route('/list_endpoints', methods=['GET'])
     def list_endpoints():
         routes = []
@@ -54,6 +56,15 @@ def create_app():
                 })
         
         return jsonify({'routes': routes})
+    
+    # initilize global set of blacklisted token
+    app.blacklisted_tokens = set()
+    # blacklist token loader
+    @jwt.token_in_blocklist_loader
+    def check_if_token_in_blocklist(jwt_header, jwt_payload):
+        jti = jwt_payload['jti']
+        return jti in current_app.blacklisted_tokens
+    
     return app
 
 quotes_app = create_app()
