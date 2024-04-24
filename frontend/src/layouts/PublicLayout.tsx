@@ -1,4 +1,4 @@
-import { AddPostComponent } from "../components/AddPost";
+import { Outlet } from "react-router-dom"
 import HeaderComponent from "../components/HeaderComponent";
 
 
@@ -9,10 +9,8 @@ function PublicLayout({ children }: {
     <>
       <HeaderComponent />
       <main className='flex flex-col justify-center items-center '>
-      <AddPostComponent />
-
-
        <div>{children}</div>
+       <Outlet />
       </main>
     </>
   )

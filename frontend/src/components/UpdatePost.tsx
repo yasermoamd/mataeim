@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { IPost } from "../app/store/postStore";
-
+import { IPost } from "../types";
 interface UpdatePostProps {
   post: IPost;
   postId: string;

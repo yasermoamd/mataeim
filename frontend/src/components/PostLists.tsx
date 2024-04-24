@@ -1,16 +1,22 @@
-import { useEffect } from "react";
-import { usePostStore } from "../app/store/postStore";
+import { useEffect, useState } from "react";
 import { PostComponent } from "./Post";
 
 /**
  * PostListComponent component.
  * @param {PostListProps} props - The props.
  */
+
+interface IPost {
+    id?: string;
+    content: string;
+    user: {
+      id: number;
+      };
+  
+  }
+
 export const PostListComponent = () => {
-    const { posts, setPosts } = usePostStore((state) => ({
-         posts: state.posts,
-         setPosts: state.setPosts,
-    }));
+    const [posts, setPosts] = useState([]);
     const url = "http://localhost:5000/api";
     useEffect(() => {
          fetch(url)
@@ -22,7 +28,7 @@ export const PostListComponent = () => {
 
     return (
         <div className="flex flex-col gap-4">
-            {posts.map((post) => (
+            {posts.map((post: IPost) => (
                 <PostComponent key={post.id} post={post} />
             ))}
         </div>

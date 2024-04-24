@@ -1,10 +1,18 @@
 import React, { useState } from "react";
-import { IPost, usePostStore } from "../app/store/postStore";
 import { UpdatePostComponent } from "./UpdatePost";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 
+
+interface IPost {
+  id?: string;
+  content: string;
+  user: {
+    id: number;
+    };
+
+}
 
 interface PostProps {
   post: IPost;
@@ -14,19 +22,10 @@ export const PostComponent: React.FC<PostProps> = ({ post }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const likes = usePostStore((state) => state.posts.find((p) => p.id === post.id)?.likes)
   
-  const { updatePost, removePost } = usePostStore((state) => ({
-    updatePost: state.updatePost,
-    removePost: state.removePost,
-  }));
-
   const handleLikedPost = (id: string) => {
-    usePostStore.getState().addLikes(id);
-    setIsLiked(!isLiked);
   }
-  const handleUpdatePost = (updatedPost: IPost) => {
-    updatePost(updatedPost);
+  const handleUpdatePost = () => {
     setShowEdit(false);
   };
 
@@ -36,8 +35,6 @@ export const PostComponent: React.FC<PostProps> = ({ post }) => {
   };
 
   const handleDeletePost = () => {
-    // implement delete post
-    removePost(post.id!);
   }
   return (
     <>
@@ -100,7 +97,7 @@ export const PostComponent: React.FC<PostProps> = ({ post }) => {
              <IoChatbubbleOutline size={20} />
           </div>
           <div className="mt-2">
-            <p>{likes} likes</p>
+            <p>likes</p>
             </div>
         </div>
       )}

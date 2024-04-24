@@ -1,17 +1,23 @@
-import HeaderComponent from "../components/HeaderComponent";
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
+interface WithAuthProps {
+  children: React.ReactNode; // Define the type for children (any React Node)
+}
 
-function AuthLayout({ children }: {
-    children: React.ReactNode;
-}) {
+const AuthLayout: React.FC<WithAuthProps> = (children)  => {
+  const isLoggedIn = localStorage.getItem('useInfo');
+
   return (
     <>
-      <HeaderComponent />
-      <main className='flex flex-col justify-center items-center '>
-        {children}
-      </main>
+      {isLoggedIn ? (
+        <>
+          {children}
+          <Outlet />
+        </>
+      ) : <Navigate to="/login" />}
     </>
   )
-}
- 
+};
+
 export default AuthLayout;
