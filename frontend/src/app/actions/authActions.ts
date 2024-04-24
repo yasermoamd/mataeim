@@ -11,7 +11,7 @@ import axiosInstance from '../api/axiosInstance';
 export const login = createAsyncThunk<UserBasicInfo, User>(
     'login',
     async (data: User) => {
-      const response = await axiosInstance.post('/api/auth/login', data);
+      const response = await axiosInstance.post('/api/auth/users/login', data);
       const resData = response.data;
   
       const { access_token, ...userInfo } = resData;
@@ -27,10 +27,8 @@ export const setBasicUserInfo = createAction<UserBasicInfo | null>('auth/setBasi
 export const register = createAsyncThunk<UserBasicInfo, NewUser>(
     'register',
     async (data: NewUser) => {
-      const response = await axiosInstance.post('/api/auth/register', data);
+      const response = await axiosInstance.post('/api/auth/users/register', data);
       const resData = response.data;
-  
-      localStorage.setItem('userInfo', JSON.stringify(resData));
       return resData;
     }
   );
@@ -52,7 +50,7 @@ export const register = createAsyncThunk<UserBasicInfo, NewUser>(
           throw new Error('Access Token not found');
         }
   
-        await axiosInstance.post('/api/auth/logout', null, {
+        await axiosInstance.post('/api/auth/users/logout', null, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
