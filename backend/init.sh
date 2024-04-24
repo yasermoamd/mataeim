@@ -31,4 +31,4 @@ echo This is the DDL code that will be run
 echo --------------------
 flask db upgrade
 source venv/bin/activate
-flask run
+flask run --debug
