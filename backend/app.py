@@ -11,7 +11,7 @@ from comments.comment_routes import comment_routes
 from config import DevConfig
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-
+from flask_cors import CORS
 """
 Create a Flask app with the following configurations:
 - SECRET_KEY
@@ -26,7 +26,8 @@ jwt = JWTManager()
 def create_app():
     # Create Flask app
     app = Flask(__name__)
-
+    # Enable CORS
+    CORS(app, origins="http://localhost:5173", supports_credentials=True, methods=['GET', 'POST', 'PUT', 'DELETE'])
     # add configuration setting
     app.config.from_object(DevConfig)
     # Initialize database
