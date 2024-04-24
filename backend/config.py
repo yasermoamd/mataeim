@@ -10,6 +10,7 @@ class DevConfig(Config):
     JWT_ACCESS_TOKEN_EXPIRES= timedelta(hours=1)  # Token expiration time
     FLASK_DEBUG=True
     FLASK_ENV="development"
+    FLASK_REDISTOGO_URL="redis://localhost:6379"
     SQLALCHEMY_DATABASE_URI="sqlite:///quote.sqlite3"
     FLASK_SQLALCHEMY_ECHO=True
     FLASK_SQLALCHEMY_TRACK_MODIFICATIONS=False
