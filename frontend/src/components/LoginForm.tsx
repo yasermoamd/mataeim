@@ -15,7 +15,7 @@ export const  LoginForm  = () =>  {
     if (email && password) {
       try {
         dispatch(login({ email, password }));
-        navigate("/");
+        navigate("/dashboard");
       } catch (e) {
         console.error(e);
       }
@@ -40,8 +40,14 @@ export const  LoginForm  = () =>  {
           onChange={(e) => setPassword(e.target.value)}
           name="password" 
           id="password" />
-      <button type="submit" onClick={handleSubmit}>Login</button>
-    </form>
+        <button
+            type="submit"
+            onClick={handleSubmit}
+            className="bg-blue-500 w-[300px] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Login
+          </button>
+      </form>
   )
 }
 

@@ -1,13 +1,15 @@
 import { Outlet } from "react-router-dom"
-import HeaderComponent from "../components/HeaderComponent";
+import Header from "../components/header/Header";
+import React from "react";
 
+interface PublicLayoutProps {
+  children?: React.ReactNode
+}
 
-function PublicLayout({ children }: {
-    children: React.ReactNode;
-}) {
+const  PublicLayout:React.FC<PublicLayoutProps> = ({children}) => {
   return (
     <>
-      <HeaderComponent />
+      <Header />
       <main className='flex flex-col justify-center items-center '>
        <div>{children}</div>
        <Outlet />
