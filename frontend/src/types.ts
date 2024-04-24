@@ -16,7 +16,7 @@ export type NewUser = User & {
 };
 
 export type UserBasicInfo = {
-  id: number;
+  id: string;
   fullname: string;
   email: string;
   access_token: string;
