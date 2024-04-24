@@ -2,9 +2,13 @@ from flask import Blueprint, request, jsonify
 from users.user_model import User
 from .user_service import authenticate
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt
+from flask_cors import cross_origin
 
 user_routes = Blueprint('auth', __name__)
+
 user_routes.blacklisted_tokens = set()
+@user_routes.route('/users/register', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def register():
     
     data = request.get_json()
@@ -23,7 +27,7 @@ def register():
 
     return jsonify({'message': 'User created'})
 
-@user_routes.route('/login', methods=['POST'])
+@user_routes.route('/users/login', methods=['POST'])
 def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),400
@@ -51,7 +55,7 @@ def get_users():
     users = User.query.all()
     return jsonify([user.serialize() for user in users]), 200
 
-@user_routes.route('/users/<str:id>', methods=['GET'])
+@user_routes.route('/users/<id>', methods=['GET'])
 @jwt_required()
 def get_user(id):
     user = User.query.filter_by(id=id).first()
@@ -67,7 +71,7 @@ def get_user(id):
     return jsonify(user_data), 200
 
 
-@user_routes.route('/logout', methods=['POST'])
+@user_routes.route('/users/logout', methods=['POST'])
 @jwt_required()
 def logout():
   jti = get_jwt()['jti']
